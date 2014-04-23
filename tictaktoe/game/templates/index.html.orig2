@@ -1,0 +1,36 @@
+{% extends "gui_game_base.html" %}
+{% block content %}
+<table class="BoxNumber1" border="1" style="width:100px">
+	<tr>
+    {% for entry in  BoxNumber1 %}
+        <td>{{ entry.value }}</td>
+    {% endfor %}
+	</tr>
+</table>
+<table class="BoxNumber2" border="1" style="width:100px">
+	<tr>
+    {% for entry in  BoxNumber2 %}
+        <td>{{ entry.value }}</td>
+    {% endfor %}
+	</tr>
+</table>
+<table class="BoxNumber3" border="1" style="width:100px">
+	<tr>
+    {% for entry in  BoxNumber3 %}
+        <td>{{ entry.value }}</td>
+    {% endfor %}
+	</tr>
+</table>
+<form action="" method="get">
+To start new game Enter Choice and press enter
+<input type="text" name="user_preference">
+</form><br><br>
+<h2><b>{{message_xy}}</b></h2>
+<form action="" method="get">
+Enter Next Position Number for {{preference}}
+<input type="text" name="user_input">
+</form><br><br>
+<h2><b>{{message_num}}</b></h2>
+
+{% endblock content %}
+

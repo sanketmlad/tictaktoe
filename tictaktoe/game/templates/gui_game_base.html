@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" ><head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" >
+	<title>{% block title %}Tic Tac Toe -- Sanket Lad {% endblock %}</title>
+	
+
+	
+</head><body style="" >
+<div class="page_container" >
+	
+	<div class="content" >
+		<h1 class="contenttitle" >{% block content_title %}Welcome to the Game{% endblock %}</h1>
+			{% block content %}
+            <div class="dualspan" >
+				<div class="dualspan_top" ></div>
+				<div class="dualspan_middle" >
+
+                    {% if section_list %}
+                        {% for section in section_list %}
+                            <h2>{{ section.title }}</h2>
+                            <p>{{ section.description }}</p>
+                            {% if section.app_set.all%}
+                            <div>
+                                <table class="condensed" >
+                                <thead>
+                                    <tr>
+                                        <th>Tool</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for app in section.app_set.all %}
+                                    <tr {% if forloop.counter|divisibleby:2 %}class="stripe"{% endif %} >
+                                        <td><a href="{{ app.link }}" >{{ app.name }}</a></td>
+                                        <td>{{ app.description|safe }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody></table>
+                            </div>
+                            {% endif %}
+                            <div class="orange_hr" ></div>
+                        {% endfor %}
+                    {% endif %}
+                    
+
+
+                 </div>
+                <div class="dualspan_bottom" ></div>
+            {% endblock %}
+          </div>
+			
+<div class="clear" ></div>
+		<div class="clear" ></div>
+		</div><!-- end content middle -->
+		<div class="clear" ></div>
+		<div class="contentbox_bottom" ></div>
+	</div> <!-- end content -->
+</div> <!-- end page_container -->
+
+
+    <script type="text/javascript" >
+
+        $(function() {
+
+            $("#progressbar").progressbar({
+                value: 37
+            });
+            $("#datepicker").datepicker();
+            $("#accordion1").accordion({ clearStyle: true,collabsible: true, active:false});
+            $("#accordion2").accordion({ clearStyle: true,collabsible: true, active:false});
+            $("#accordion3").accordion({ clearStyle: true,collabsible: true, active:false});
+            $("#accordion-1").accordion({ clearStyle: true,collabsible: true, active:false});
+            $("#accordion-2").accordion({ clearStyle: true,collabsible: true, active:false});
+            $("#accordion-3").accordion({ clearStyle: true,collabsible: true, active:false});
+            $("#accordion-4").accordion({ clearStyle: true,collabsible: true, active:false});
+            $("#accordion-5").accordion({ clearStyle: true,collabsible: true, active:false});
+            $("#accordion-6").accordion({ clearStyle: true,collabsible: true, active:false});
+            $("#accordion1").accordion();
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 500,
+                values: [75, 300],
+                slide: function(event, ui) {
+                    $("#amount").val('$' + ui.values[0] + ' - $' + ui.values[1]);
+                }
+            });
+            $("#amount").val('$' + $("#slider-range").slider("values", 0) + ' - $' + $("#slider-range").slider("values", 1));
+	
+            $("#tabs").tabs();   
+            $("#secondary_nav").tabs();   
+            
+            
+            /* Buttons */           
+            $("button, input:submit, a.button").button();
+            
+            
+ 			$("a.button_radio").button({icons:{primary:'ui-icon-signal-diag'}});
+ 			$("a.button_check").button({icons:{primary:'ui-icon-check'}});
+            
+            $("a.button_check").click(function(e){
+            	e.preventDefault();
+            	var answer = $("<div class=\"attending\">Yes/No</div>").hide();
+        		answer.appendTo($("#asdf")).slideDown();
+            });
+        
+        	/* Toolbar */        	
+        	$('#beginning').button({
+				text: false,
+				icons: {
+					primary: 'ui-icon-seek-start'
+				}
+			});
+			$('#rewind').button({
+				text: false,
+				icons: {
+					primary: 'ui-icon-seek-prev'
+				}
+			});
+			$('#play').button({
+				text: false,
+				icons: {
+					primary: 'ui-icon-play'
+				}
+			})
+			.click(function() {
+				var options;
+				if ($(this).text() == 'play') {
+					options = {
+						label: 'pause',
+						icons: {
+							primary: 'ui-icon-pause'
+						}
+					};
+				} else {
+					options = {
+						label: 'play',
+						icons: {
+							primary: 'ui-icon-play'
+						}
+					};
+				}
+				$(this).button('option', options);
+			});
+			$('#stop').button({
+				text: false,
+				icons: {
+					primary: 'ui-icon-stop'
+				}
+			})
+			.click(function() {
+				$('#play').button('option', {
+					label: 'play',
+					icons: {
+						primary: 'ui-icon-play'
+					}
+				});
+			});
+			$('#forward').button({
+				text: false,
+				icons: {
+					primary: 'ui-icon-seek-next'
+				}
+			});
+			$('#end').button({
+				text: false,
+				icons: {
+					primary: 'ui-icon-seek-end'
+				}
+			});
+			$("#shuffle").button();
+			$("#repeat").buttonset();
+
+
+		/* modules */		
+		$(".sortable_column").sortable({
+			connectWith: '.sortable_column',
+			opacity: 0.6,
+			cursor: 'move',
+			revert: 150,
+			handle: '.module-header'
+		});
+
+		
+		/* Tool tip */
+		//$("a.tip[title]").tipsy({gravity: 's'});
+		
+		/* Data grid */
+		$('table.grid').dataTable({
+			"bJQueryUI": true
+		});
+
+  });
+	</script>
+	
+	
+
+ 
+</body></html>

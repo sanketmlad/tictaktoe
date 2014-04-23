@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>
+Tic-Tac-Toe Game - Sanket Lad
+</title>
+</head>
+<body>
+<h2>Welcome To the Tic Tak Toe Game</h2>
+<h3>Instructions</h3>
+1. This Game is Between X and Y<br>
+2. X always plays first<br>
+3. You can place you value only in place of N<br>
+4. Please Enter next element number in box given below<br>
+5. Element number are from 1 to 9 <br>
+6. Example: first 3 in row are 1,2 and 3 and in next row it will be 4,5 and 6 and in final it will be 7,8 and 9<br>
+
+<table border style="width:100px"><tr><td>1</td><td>2</td><td>3</td></tr> <br>This is table block numbers<tr><td>4</td><td>5</td><td>6</td></tr> <tr><td>7</td><td>8</td><td>9</td></tr></table>
+{% block content %}
+<br>
+<table class="BoxNumber1" border="1" style="width:100px">
+        <tr>
+    {% for entry in  BoxNumber1 %}
+        <td>{{ entry.value }}</td>
+    {% endfor %}
+        </tr>
+</table>
+<table class="BoxNumber2" border="1" style="width:100px">
+        <tr>
+    {% for entry in  BoxNumber2 %}
+        <td>{{ entry.value }}</td>
+    {% endfor %}
+        </tr>
+</table>
+<table class="BoxNumber3" border="1" style="width:100px">
+        <tr>
+    {% for entry in  BoxNumber3 %}
+        <td>{{ entry.value }}</td>
+    {% endfor %}
+        </tr>
+</table>
+<form action="" method="get">
+To start new game Enter Choice and press enter (enter only X and Y)
+<input type="text" name="user_preference">
+</form>
+<h2><b>{{message_xy}}</b></h2>
+<form action="" method="get">
+Your element is {{preference}}, Enter Next Position Number for {{preference}}
+<input type="text" name="user_input">
+</form>
+<h2><b>{{message_num}}</b></h2>
+
+{% endblock content %}
+
+</body>
+</html>
